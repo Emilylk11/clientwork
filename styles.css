@@ -51,7 +51,7 @@ body{font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans
 @media(min-width:768px){.hero__inner{grid-template-columns:1.1fr .9fr;padding:6rem 0}}
 .hero h1{font-size:clamp(2rem,2.8vw,3.2rem);line-height:1.1;margin:0}
 .hero p{margin:.75rem 10 0;color:var(--muted)}
-.hero__imgbox{aspect-ratio:4/3;border-radius:24px;background:url('https://raw.githubusercontent.com/Emilylk11/clientwork/4b74e155fa5a112b26addf76fbf4a5b219e31788/assets/Pavers%20and%20Retaining%20Wall.png') center/cover no-repeat;box-shadow:0 20px 40px rgba(0,0,0,.12);border:1px solid var(--line)}
+.hero__imgbox{aspect-ratio:4/3;border-radius:24px;background:url('assets/pavers-retaining-wall.png') center/cover no-repeat;box-shadow:0 20px 40px rgba(0,0,0,.12);border:1px solid var(--line)}
 .badge{position:absolute;bottom:64px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.08);padding:.75rem;display:flex;gap:.75rem;align-items:center}
 .icon{width:40px;height:40px;border-radius:12px;background:#ffffffb3;display:grid;place-items:center;color:var(--brand)}
 .badge__title{font-weight:600}
@@ -133,6 +133,7 @@ body{font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans
 .mobile-cta{position:sticky;bottom:0;left:0;right:0;z-index:40;padding:1rem;display:block}
 .mobile-cta .btn{box-shadow:0 10px 18px rgba(0,0,0,.12)}
 @media(min-width:768px){.mobile-cta{display:none}}
+
 
 
 
