@@ -1,329 +1,308 @@
-import React from "react";
-
-// Simple icons
-const Icon = ({ children }) => (
-  <div className="w-10 h-10 rounded-2xl bg-white/70 shadow-sm flex items-center justify-center text-emerald-800">
-    {children}
-  </div>
-);
-
-const Stat = ({ value, label }) => (
-  <div className="text-center">
-    <div className="text-3xl md:text-4xl font-extrabold tracking-tight">{value}</div>
-    <div className="text-sm opacity-80">{label}</div>
-  </div>
-);
-
-const Testimonial = ({ quote, name, meta }) => (
-  <figure className="bg-white rounded-2xl p-6 shadow-md ring-1 ring-black/10">
-    <blockquote className="text-gray-800">“{quote}”</blockquote>
-    <figcaption className="mt-4 text-sm font-medium">{name} <span className="opacity-70 font-normal">· {meta}</span></figcaption>
-  </figure>
-);
-
-export default function App() {
-  // ===== Data (centralized so it's easy to edit and test) =====
-  const services = [
-    { title: "Paver Patios & Walkways", desc: "Premium pavers, patterned borders, steps & landings—built to last.", emoji: "🧱" },
-    { title: "Retaining Walls", desc: "Engineered block & natural stone walls that solve slope & erosion.", emoji: "🪨" },
-    { title: "3D Landscape Design", desc: "See it before we build it—layouts, materials, lighting & plant palettes.", emoji: "🖥️" },
-    { title: "Sod Installation", desc: "From bare to beautiful—graded, leveled, and rolled for instant curb appeal.", emoji: "🌱" },
-    { title: "Lighting & Drainage", desc: "Low‑voltage lighting, down‑lighting, French drains & grading fixes.", emoji: "💡" },
-    { title: "Maintenance", desc: "Beds, mulch, pruning, seasonal cleanups, and weekly lawn routes.", emoji: "🧹" },
-  ];
-
-  const workProjects = [
-    { src: "/img/projects/patio-01.jpg", caption: "Paver Patio with Border · Orland Park" },
-    { src: "/img/projects/wall-02.jpg", caption: "Retaining Wall & Steps · Oak Lawn" },
-    { src: "/img/projects/sod-03.jpg", caption: "Sod Install & Beds · Naperville" },
-  ];
-
-  // ===== Lightweight self-tests (debug console) =====
-  if (typeof window !== "undefined") {
-    console.assert(Array.isArray(services) && services.length === 6, "Services array should have 6 items");
-    console.assert(Array.isArray(workProjects) && workProjects.length === 3, "Recent Projects should have exactly 3 items");
-  }
-
-  return (
-    <div className="font-[ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial] text-gray-900 bg-gradient-to-b from-emerald-50 to-white">
-      {/* Sticky top bar */}
-      <div className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-black/5">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-emerald-700 text-white grid place-items-center font-bold">SS</div>
-            <div className="leading-tight">
-              <div className="font-bold">Sergio & Son Landscaping</div>
-              <div className="text-xs opacity-70">Chicago • Design • Build • Maintenance</div>
-            </div>
-          </div>
-          <div className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#services" className="hover:text-emerald-700">Services</a>
-            <a href="#work" className="hover:text-emerald-700">Projects</a>
-            <a href="#process" className="hover:text-emerald-700">Process</a>
-            <a href="#faq" className="hover:text-emerald-700">FAQ</a>
-          </div>
-          <a href="tel:+1-773-937-7555" className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 text-sm font-medium">
-            <span>📞</span> (773) 937‑7555
-          </a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sergio & Son Landscaping — Chicago</title>
+  <meta name="description" content="Landscape design, pavers, retaining walls, sod, lighting, and maintenance across Chicagoland. Call (773) 937-7555 or DM @sergioandsonlandscaping." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <div class="brand__logo">SS</div>
+        <div class="brand__text">
+          <div class="brand__name">Sergio & Son Landscaping</div>
+          <div class="brand__tag">Chicago • Design • Build • Maintenance</div>
         </div>
       </div>
-
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,rgba(16,185,129,0.15),transparent_60%),radial-gradient(ellipse_at_bottom_right,rgba(5,150,105,0.15),transparent_50%)]" />
-        <div className="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-              Design. Transform. Enjoy. <span className="text-emerald-700">Outdoor living by Sergio & Son</span>
-            </h1>
-            <p className="mt-4 text-lg text-gray-700">Landscape design + build done right the first time. Patios, pavers, retaining walls, lighting, sod, and full‑service maintenance—serving the Chicago area.</p>
-            <div className="mt-6 flex flex-col sm:flex-row gap-3">
-              <a href="#contact" className="inline-flex items-center justify-center rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-3 font-medium">Get a Same‑Day Quote</a>
-              <a href="#work" className="inline-flex items-center justify-center rounded-xl border border-black/10 hover:border-emerald-700 hover:text-emerald-700 bg-white px-6 py-3 font-medium">See Recent Projects</a>
-            </div>
-            <div className="mt-8 grid grid-cols-3 gap-6 max-w-md">
-              <Stat value="10+" label="Years locally" />
-              <Stat value="4.9★" label="Avg. rating" />
-              <Stat value="1,000+" label="Projects completed" />
-            </div>
-          </div>
-          <div className="relative">
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/10 bg-[url('https://images.unsplash.com/photo-1599360889420-da1a2d7fb25f?q=80&w=1400&auto=format&fit=crop')] bg-cover bg-center" />
-            <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-lg ring-1 ring-black/10 p-4 flex items-center gap-3">
-              <Icon>🧱</Icon>
-              <div>
-                <div className="font-semibold">Pavers & Retaining Walls</div>
-                <div className="text-xs opacity-70">Built for beauty and longevity</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Service highlights */}
-      <section id="services" className="py-16 md:py-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Landscape Design • Build • Maintenance</h2>
-          <p className="mt-2 text-gray-700 max-w-2xl">Choose a one‑time build or set‑and‑forget maintenance. On‑schedule crews, clean sites, and quality that lasts.</p>
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((s, i) => (
-              <div key={i} className="group rounded-2xl bg-white ring-1 ring-black/10 p-6 shadow-sm hover:shadow-md transition">
-                <div className="flex items-center gap-3">
-                  <Icon>{s.emoji}</Icon>
-                  <h3 className="text-lg font-semibold">{s.title}</h3>
-                </div>
-                <p className="mt-3 text-sm text-gray-700">{s.desc}</p>
-                <a href="#contact" className="mt-4 inline-flex items-center gap-2 text-emerald-700 font-medium">Get a quote →</a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Work gallery */}
-      <section id="work" className="py-16 md:py-20 bg-emerald-50/60">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Recent Projects</h2>
-              <p className="mt-2 text-gray-700 max-w-2xl">A few transformations from Chicago homes and storefronts.</p>
-            </div>
-            <a href="#contact" className="hidden md:inline-flex items-center rounded-xl border border-black/10 bg-white px-4 py-2 text-sm hover:border-emerald-700 hover:text-emerald-700">Get your property assessed</a>
-          </div>
-
-          <div className="mt-8 grid md:grid-cols-3 gap-6">
-            {workProjects.map((p, i) => (
-              <div key={i} className="group relative rounded-2xl overflow-hidden ring-1 ring-black/10 shadow-sm">
-                <img src={p.src} alt="Project" className="w-full h-64 object-cover group-hover:scale-105 transition-transform"/>
-                <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/60 to-transparent text-white text-sm">{p.caption}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section id="process" className="py-16 md:py-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Our Process</h2>
-          <p className="mt-2 text-gray-700 max-w-2xl">Clear communication, fair scope, and zero surprises.</p>
-          <ol className="mt-8 grid md:grid-cols-4 gap-6 text-sm">
-            {[{n:1,t:"Design Consult",d:"Quick call + site visit to capture goals, styles, and budget."},{n:2,t:"3D + Scope",d:"Optional 3D renders and clear scope with materials & timeline."},{n:3,t:"Build",d:"On‑time crew, pro‑grade tools, dust & debris control, daily updates."},{n:4,t:"Final Walkthrough",d:"We review care tips and warranty and schedule optional maintenance."}].map((step) => (
-              <li key={step.n} className="rounded-2xl bg-white ring-1 ring-black/10 p-6 shadow-sm">
-                <div className="text-xs font-bold tracking-widest text-emerald-700">STEP {step.n}</div>
-                <div className="mt-1 font-semibold">{step.t}</div>
-                <p className="mt-2 opacity-80">{step.d}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* Popular Services (no prices) */}
-      <section id="pricing" className="py-16 md:py-20 bg-emerald-50/60">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Popular Services</h2>
-          <p className="mt-2 text-gray-700 max-w-2xl">Every project is unique. Here are common packages—book a consult for a custom quote.</p>
-          <div className="mt-8 grid md:grid-cols-3 gap-6">
-            <div className="rounded-2xl p-6 shadow-lg ring-1 ring-black/10 bg-white">
-              <h3 className="text-xl font-semibold">Paver Patio Starter</h3>
-              <ul className="mt-4 space-y-2 text-sm">
-                <li>✅ 200–350 sq ft patio</li>
-                <li>✅ Patterned border</li>
-                <li>✅ Polymeric sand & compaction</li>
-              </ul>
-              <a href="#contact" className="mt-6 inline-flex items-center justify-center w-full rounded-xl bg-emerald-700 hover:bg-emerald-800 transition py-3 text-white font-medium">Request Estimate</a>
-            </div>
-            <div className="rounded-2xl p-6 shadow-lg ring-2 ring-emerald-600 bg-white">
-              <div className="flex items-center justify-between">
-                <h3 className="text-xl font-semibold">Front Yard Refresh</h3>
-                <span className="text-xs bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">Most Popular</span>
-              </div>
-              <ul className="mt-4 space-y-2 text-sm">
-                <li>✅ Bed reshape + fresh mulch</li>
-                <li>✅ 6–12 shrubs/perennials</li>
-                <li>✅ Edging + cleanup</li>
-              </ul>
-              <a href="#contact" className="mt-6 inline-flex items-center justify-center w-full rounded-xl bg-emerald-700 hover:bg-emerald-800 transition py-3 text-white font-medium">Request Estimate</a>
-            </div>
-            <div className="rounded-2xl p-6 shadow-lg ring-1 ring-black/10 bg-white">
-              <h3 className="text-xl font-semibold">Sod Installation</h3>
-              <ul className="mt-4 space-y-2 text-sm">
-                <li>✅ Grading & soil prep</li>
-                <li>✅ Premium sod + rolling</li>
-                <li>✅ Watering schedule</li>
-              </ul>
-              <a href="#contact" className="mt-6 inline-flex items-center justify-center w-full rounded-xl bg-emerald-700 hover:bg-emerald-800 transition py-3 text-white font-medium">Request Estimate</a>
-            </div>
-          </div>
-          <p className="mt-4 text-xs opacity-70">Licensed & insured. Warranty on workmanship. Financing options available on request.</p>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section id="reviews" className="py-16 md:py-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">What Clients Say</h2>
-          <div className="mt-8 grid md:grid-cols-3 gap-6">
-            <Testimonial quote="They turned a muddy mess into a patio we use every night. On budget, on time." name="Hannah P." meta="Patio + lighting"/>
-            <Testimonial quote="Weekly lawn care is flawless. Edges look crisp and they text before arriving." name="Marcus D." meta="Maintenance"/>
-            <Testimonial quote="Solved our drainage problem and the beds look incredible now." name="Renee K." meta="Drainage + beds"/>
-          </div>
-        </div>
-      </section>
-
-      {/* Service area + credentials */}
-      <section className="py-16 md:py-20 bg-emerald-50/60">
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-start">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Proudly Serving Chicago</h2>
-            <p className="mt-2 text-gray-700">From the city to the suburbs—Chicago, Naperville, Schaumburg, Oak Lawn, Orland Park, and more.</p>
-            <ul className="mt-4 grid grid-cols-2 gap-2 text-sm">
-              {["Paver patios & walkways","Retaining walls","3D design","Lighting & drainage","Sod installation","Maintenance"].map((t,i)=>(
-                <li key={i} className="flex items-center gap-2"><span>📍</span>{t}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-2xl bg-white ring-1 ring-black/10 p-6 shadow-md">
-            <h3 className="font-semibold">Credentials & Coverage</h3>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li>• Licensed & insured • Workers comp coverage</li>
-              <li>• OSHA‑trained crew leads • Background‑checked team</li>
-              <li>• Satisfaction guarantee: we fix issues within 48 hours</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section id="faq" className="py-16 md:py-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">FAQ</h2>
-          <div className="mt-6 grid md:grid-cols-2 gap-6">
-            {[{
-              q:"How fast can I get a quote?",
-              a:"Most quotes are turned around the same day with photos or a quick walk‑through."
-            },{
-              q:"Do you offer 3D designs?",
-              a:"Yes—many hardscape projects include optional 3D renders so you can approve every detail."
-            },{
-              q:"What payment methods do you take?",
-              a:"Cards, ACH, checks. Invoices sent via email with online payment link."
-            },{
-              q:"Do you service both residential and small commercial?",
-              a:"Yes—we work with homeowners, HOAs, and small businesses across Chicagoland."}].map((f,i)=>(
-              <div key={i} className="rounded-2xl bg-white ring-1 ring-black/10 p-6 shadow-sm">
-                <div className="font-semibold">{f.q}</div>
-                <p className="mt-2 text-sm opacity-80">{f.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="py-16 md:py-20 bg-gradient-to-b from-white to-emerald-50/80">
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Ready to transform your outdoors?</h2>
-            <p className="mt-2 text-gray-700">Call <a className="text-emerald-700 font-medium" href="tel:+1-773-937-7555">(773) 937‑7555</a> or DM <span className="text-emerald-700 font-medium">@sergioandsonlandscaping</span> on Instagram to start.</p>
-            <ul className="mt-6 space-y-2 text-sm">
-              <li>• Mon–Sat 7:30a–6:00p</li>
-            </ul>
-          </div>
-          <form className="rounded-2xl bg-white ring-1 ring-black/10 p-6 shadow-md grid gap-4">
-            <div className="grid md:grid-cols-2 gap-4">
-              <label className="grid gap-1 text-sm">First name<input className="mt-1 rounded-xl border border-black/15 px-3 py-2" placeholder="Jane"/></label>
-              <label className="grid gap-1 text-sm">Last name<input className="mt-1 rounded-xl border border-black/15 px-3 py-2" placeholder="Doe"/></label>
-            </div>
-            <label className="grid gap-1 text-sm">Email<input type="email" className="mt-1 rounded-xl border border-black/15 px-3 py-2" placeholder="you@email.com"/></label>
-            <label className="grid gap-1 text-sm">Phone<input type="tel" className="mt-1 rounded-xl border border-black/15 px-3 py-2" placeholder="(___) ___‑____"/></label>
-            <label className="grid gap-1 text-sm">Address (for quoting)<input className="mt-1 rounded-xl border border-black/15 px-3 py-2" placeholder="1234 Maple Ave"/></label>
-            <label className="grid gap-1 text-sm">What do you need help with?<textarea className="mt-1 rounded-xl border border-black/15 px-3 py-2 min-h-[90px]" placeholder="Paver patio, retaining wall, sod, etc."/></label>
-            <button type="button" onClick={()=>alert('Thanks! We\'ll be in touch shortly.')} className="rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-3 font-medium">Request Quote</button>
-            <p className="text-xs opacity-70">By submitting, you agree to be contacted about your request. We don't share your info.</p>
-          </form>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-black/5">
-        <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
-          <div>
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-emerald-700 text-white grid place-items-center font-bold">SS</div>
-              <div className="font-semibold">Sergio & Son Landscaping</div>
-            </div>
-            <p className="mt-3 text-sm opacity-80 max-w-sm">Landscape design, hardscapes, and maintenance for homes and small businesses.</p>
-          </div>
-          <div className="grid grid-cols-2 gap-8 text-sm">
-            <div>
-              <div className="font-semibold">Company</div>
-              <ul className="mt-2 space-y-2 opacity-80">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#work">Projects</a></li>
-                <li><a href="#pricing">Popular Services</a></li>
-                <li><a href="#faq">FAQ</a></li>
-              </ul>
-            </div>
-            <div>
-              <div className="font-semibold">Contact</div>
-              <ul className="mt-2 space-y-2 opacity-80">
-                <li><a href="tel:+1-773-937-7555">(773) 937‑7555</a></li>
-                <li>Instagram: @sergioandsonlandscaping</li>
-                <li>Mon–Sat 7:30a–6:00p</li>
-              </ul>
-            </div>
-          </div>
-          <div className="text-sm opacity-70">© {new Date().getFullYear()} Sergio & Son Landscaping. All rights reserved.</div>
-        </div>
-        {/* Mobile CTA bar */}
-        <div className="md:hidden sticky bottom-0 inset-x-0 z-40">
-          <div className="m-3 rounded-2xl shadow-lg ring-1 ring-black/10 overflow-hidden bg-white">
-            <a href="tel:+1-773-937-7555" className="w-full flex items-center justify-center gap-2 py-3 font-medium bg-emerald-700 text-white">📞 Call for a Quote</a>
-          </div>
-        </div>
-      </footer>
+      <nav class="nav">
+        <a href="#services">Services</a>
+        <a href="#work">Projects</a>
+        <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn--primary" href="tel:+17739377555">📞 (773) 937‑7555</a>
     </div>
-  );
-}
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <h1>Design. Transform. Enjoy. <span class="t-brand">Outdoor living by Sergio & Son</span></h1>
+        <p>Landscape design + build done right the first time. Patios, pavers, retaining walls, lighting, sod, and full‑service maintenance—serving the Chicago area.</p>
+        <div class="btnrow">
+          <a class="btn btn--primary" href="#contact">Get a Same‑Day Quote</a>
+          <a class="btn btn--outline" href="#work">See Recent Projects</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="stat__value">10+</div><div class="stat__label">Years locally</div></div>
+          <div class="stat"><div class="stat__value">4.9★</div><div class="stat__label">Avg. rating</div></div>
+          <div class="stat"><div class="stat__value">1,000+</div><div class="stat__label">Projects completed</div></div>
+        </div>
+      </div>
+      <div class="hero__image">
+        <div class="hero__imgbox" role="img" aria-label="Stone patio and plant beds"></div>
+        <div class="badge">
+          <div class="icon">🧱</div>
+          <div>
+            <div class="badge__title">Pavers & Retaining Walls</div>
+            <div class="badge__meta">Built for beauty and longevity</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2>Landscape Design • Build • Maintenance</h2>
+      <p class="lede">Choose a one‑time build or set‑and‑forget maintenance. On‑schedule crews, clean sites, and quality that lasts.</p>
+      <div class="cards cards--grid-3">
+        <article class="card">
+          <div class="card__head"><div class="icon">🧱</div><h3>Paver Patios & Walkways</h3></div>
+          <p>Premium pavers, patterned borders, steps & landings—built to last.</p>
+          <a class="link" href="#contact">Get a quote →</a>
+        </article>
+        <article class="card">
+          <div class="card__head"><div class="icon">🪨</div><h3>Retaining Walls</h3></div>
+          <p>Engineered block & natural stone walls that solve slope & erosion.</p>
+          <a class="link" href="#contact">Get a quote →</a>
+        </article>
+        <article class="card">
+          <div class="card__head"><div class="icon">🖥️</div><h3>3D Landscape Design</h3></div>
+          <p>See it before we build it—layouts, materials, lighting & plant palettes.</p>
+          <a class="link" href="#contact">Get a quote →</a>
+        </article>
+        <article class="card">
+          <div class="card__head"><div class="icon">🌱</div><h3>Sod Installation</h3></div>
+          <p>From bare to beautiful—graded, leveled, and rolled for instant curb appeal.</p>
+          <a class="link" href="#contact">Get a quote →</a>
+        </article>
+        <article class="card">
+          <div class="card__head"><div class="icon">💡</div><h3>Lighting & Drainage</h3></div>
+          <p>Low‑voltage lighting, down‑lighting, French drains & grading fixes.</p>
+          <a class="link" href="#contact">Get a quote →</a>
+        </article>
+        <article class="card">
+          <div class="card__head"><div class="icon">🧹</div><h3>Maintenance</h3></div>
+          <p>Beds, mulch, pruning, seasonal cleanups, and weekly lawn routes.</p>
+          <a class="link" href="#contact">Get a quote →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="work" class="section section--tint">
+    <div class="container">
+      <div class="section__split">
+        <div>
+          <h2>Recent Projects</h2>
+          <p class="lede">A few transformations from Chicago homes and storefronts.</p>
+        </div>
+        <a class="btn btn--ghost" href="#contact">Get your property assessed</a>
+      </div>
+      <div class="projects-grid">
+        <figure class="project">
+          <img src="/img/projects/patio-01.jpg" alt="Paver patio with border" />
+          <figcaption>Paver Patio with Border · Orland Park</figcaption>
+        </figure>
+        <figure class="project">
+          <img src="/img/projects/wall-02.jpg" alt="Retaining wall and steps" />
+          <figcaption>Retaining Wall & Steps · Oak Lawn</figcaption>
+        </figure>
+        <figure class="project">
+          <img src="/img/projects/sod-03.jpg" alt="Sod installation and planting beds" />
+          <figcaption>Sod Install & Beds · Naperville</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="section">
+    <div class="container">
+      <h2>Our Process</h2>
+      <p class="lede">Clear communication, fair scope, and zero surprises.</p>
+      <ol class="steps">
+        <li class="step"><div class="step__label">STEP 1</div><div class="step__title">Design Consult</div><p>Quick call + site visit to capture goals, styles, and budget.</p></li>
+        <li class="step"><div class="step__label">STEP 2</div><div class="step__title">3D + Scope</div><p>Optional 3D renders and clear scope with materials & timeline.</p></li>
+        <li class="step"><div class="step__label">STEP 3</div><div class="step__title">Build</div><p>On‑time crew, pro‑grade tools, dust & debris control, daily updates.</p></li>
+        <li class="step"><div class="step__label">STEP 4</div><div class="step__title">Final Walkthrough</div><p>We review care tips and warranty and schedule optional maintenance.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Popular Services -->
+  <section id="pricing" class="section section--tint">
+    <div class="container">
+      <h2>Popular Services</h2>
+      <p class="lede">Every project is unique. Here are common packages—book a consult for a custom quote.</p>
+      <div class="cards cards--grid-3">
+        <article class="card">
+          <h3>Paver Patio Starter</h3>
+          <ul class="list">
+            <li>✅ 200–350 sq ft patio</li>
+            <li>✅ Patterned border</li>
+            <li>✅ Polymeric sand & compaction</li>
+          </ul>
+          <a class="btn btn--primary w-full" href="#contact">Request Estimate</a>
+        </article>
+        <article class="card card--featured">
+          <div class="card__badge">Most Popular</div>
+          <h3>Front Yard Refresh</h3>
+          <ul class="list">
+            <li>✅ Bed reshape + fresh mulch</li>
+            <li>✅ 6–12 shrubs/perennials</li>
+            <li>✅ Edging + cleanup</li>
+          </ul>
+          <a class="btn btn--primary w-full" href="#contact">Request Estimate</a>
+        </article>
+        <article class="card">
+          <h3>Sod Installation</h3>
+          <ul class="list">
+            <li>✅ Grading & soil prep</li>
+            <li>✅ Premium sod + rolling</li>
+            <li>✅ Watering schedule</li>
+          </ul>
+          <a class="btn btn--primary w-full" href="#contact">Request Estimate</a>
+        </article>
+      </div>
+      <p class="fineprint">Licensed & insured. Warranty on workmanship. Financing options available on request.</p>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="reviews" class="section">
+    <div class="container">
+      <h2>What Clients Say</h2>
+      <div class="cards cards--grid-3">
+        <figure class="quote">
+          <blockquote>“They turned a muddy mess into a patio we use every night. On budget, on time.”</blockquote>
+          <figcaption>Hannah P. · Patio + lighting</figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>“Weekly lawn care is flawless. Edges look crisp and they text before arriving.”</blockquote>
+          <figcaption>Marcus D. · Maintenance</figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>“Solved our drainage problem and the beds look incredible now.”</blockquote>
+          <figcaption>Renee K. · Drainage + beds</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service area -->
+  <section class="section section--tint">
+    <div class="container split">
+      <div>
+        <h2>Proudly Serving Chicago</h2>
+        <p class="lede">From the city to the suburbs—Chicago, Naperville, Schaumburg, Oak Lawn, Orland Park, and more.</p>
+        <ul class="bullets">
+          <li>📍 Paver patios & walkways</li>
+          <li>📍 Retaining walls</li>
+          <li>📍 3D design</li>
+          <li>📍 Lighting & drainage</li>
+          <li>📍 Sod installation</li>
+          <li>📍 Maintenance</li>
+        </ul>
+      </div>
+      <aside class="panel">
+        <h3>Credentials & Coverage</h3>
+        <ul class="bullets bullets--plain">
+          <li>• Licensed & insured • Workers comp coverage</li>
+          <li>• OSHA‑trained crew leads • Background‑checked team</li>
+          <li>• Satisfaction guarantee: we fix issues within 48 hours</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <h2>FAQ</h2>
+      <div class="faq">
+        <article class="faq__item"><h3>How fast can I get a quote?</h3><p>Most quotes are turned around the same day with photos or a quick walk‑through.</p></article>
+        <article class="faq__item"><h3>Do you offer 3D designs?</h3><p>Yes—many hardscape projects include optional 3D renders so you can approve every detail.</p></article>
+        <article class="faq__item"><h3>What payment methods do you take?</h3><p>Cards, ACH, checks. Invoices sent via email with online payment link.</p></article>
+        <article class="faq__item"><h3>Do you service both residential and small commercial?</h3><p>Yes—we work with homeowners, HOAs, and small businesses across Chicagoland.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section section--fade">
+    <div class="container split">
+      <div>
+        <h2>Ready to transform your outdoors?</h2>
+        <p class="lede">Call <a class="t-brand" href="tel:+17739377555">(773) 937‑7555</a> or DM <span class="t-brand">@sergioandsonlandscaping</span> on Instagram to start.</p>
+        <ul class="bullets bullets--plain">
+          <li>• Mon–Sat 7:30a–6:00p</li>
+        </ul>
+      </div>
+      <form class="form" onsubmit="event.preventDefault(); alert('Thanks! We\'ll be in touch shortly.');">
+        <div class="grid-2">
+          <label>First name<input placeholder="Jane" required></label>
+          <label>Last name<input placeholder="Doe" required></label>
+        </div>
+        <label>Email<input type="email" placeholder="you@email.com" required></label>
+        <label>Phone<input type="tel" placeholder="(___) ___‑____" required></label>
+        <label>Address (for quoting)<input placeholder="1234 Maple Ave"></label>
+        <label>What do you need help with?<textarea placeholder="Paver patio, retaining wall, sod, etc." rows="4"></textarea></label>
+        <button class="btn btn--primary" type="submit">Request Quote</button>
+        <p class="fineprint">By submitting, you agree to be contacted about your request. We don't share your info.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="brand">
+        <div class="brand__logo">SS</div>
+        <div class="brand__name">Sergio & Son Landscaping</div>
+      </div>
+      <div class="footer__cols">
+        <div>
+          <div class="footer__title">Company</div>
+          <ul class="menu">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#work">Projects</a></li>
+            <li><a href="#pricing">Popular Services</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__title">Contact</div>
+          <ul class="menu">
+            <li><a href="tel:+17739377555">(773) 937‑7555</a></li>
+            <li>Instagram: @sergioandsonlandscaping</li>
+            <li>Mon–Sat 7:30a–6:00p</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">© <span id="y"></span> Sergio & Son Landscaping. All rights reserved.</div>
+    </div>
+
+    <!-- Mobile CTA -->
+    <div class="mobile-cta">
+      <a class="btn btn--primary btn--full" href="tel:+17739377555">📞 Call for a Quote</a>
+    </div>
+  </footer>
+
+  <script>
+    // Year stamp
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // Lightweight self-tests
+    console.assert(document.querySelectorAll('.projects-grid .project').length === 3, 'Recent Projects should render exactly 3 items');
+    console.assert(document.querySelectorAll('#services .card').length === 6, 'Services should render 6 cards');
+  </script>
+</body>
+</html>
