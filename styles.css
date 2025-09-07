@@ -52,7 +52,7 @@ $1
 .hero h1{font-size:clamp(2rem,2.8vw,3.2rem);line-height:1.1;margin:0}
 .hero p{margin:.75rem 0 0;color:var(--muted)}
 .hero__imgbox{aspect-ratio:4/3;border-radius:24px;background:url('https://images.unsplash.com/photo-1599360889420-da1a2d7fb25f?q=80&w=1400&auto=format&fit=crop') center/cover no-repeat;box-shadow:0 20px 40px rgba(0,0,0,.12);border:1px solid var(--line)}
-.badge{position:absolute;left:50%;transform:translateX(-50%);bottom:-14px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.08);padding:.75rem;display:flex;gap:.75rem;align-items:center}
+.badge{position:absolute;left:12px;bottom:-14px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.08);padding:.75rem;display:flex;gap:.75rem;align-items:center}
 .icon{width:40px;height:40px;border-radius:12px;background:#ffffffb3;display:grid;place-items:center;color:var(--brand)}
 .badge__title{font-weight:600}
 .badge__meta{font-size:.75rem;color:#6b7280}
