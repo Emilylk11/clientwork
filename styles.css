@@ -46,13 +46,32 @@ body{font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans
 @media(min-width:640px){.btnrow{flex-direction:row}}
 
 /* hero */
-.hero__image{position:relative;display:flex;justify-content:flex-end}
-
-
-@media(min-width:768px){.hero__inner{grid-template-columns:1.1fr .9fr;padding:6rem 0}}
+.hero__image{
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  min-width: 0;
+}
+@media (min-width:768px){
+  .hero__inner{
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    align-items: center;
+    padding: 6rem 0;
+  }
+  .hero__image{ grid-column: 2; justify-self: end; }
+}
 .hero h1{font-size:clamp(2rem,2.8vw,3.2rem);line-height:1.1;margin:0}
 .hero p{margin:.75rem 0 0;color:var(--muted)}
-.hero__img{width:clamp(260px,42vw,560px);margin-left:auto;aspect-ratio:4/3;border-radius:24px;background:url('assets/pavers-retaining-wall.png') center/cover no-repeat;box-shadow:0 20px 40px rgba(0,0,0,.12);border:1px solid var(--line)}
+.hero__img{
+  width: clamp(260px, 42vw, 560px);
+  margin-left: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.12);
+  border: 1px solid var(--line);
+}
 .badge{position:absolute;left:12px;bottom:-14px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.08);padding:.75rem;display:flex;gap:.75rem;align-items:center}
 .icon{width:40px;height:40px;border-radius:12px;background:#ffffffb3;display:grid;place-items:center;color:var(--brand)}
 .badge__title{font-weight:600}
@@ -134,6 +153,7 @@ body{font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans
 .mobile-cta{position:sticky;bottom:0;left:0;right:0;z-index:40;padding:1rem;display:block}
 .mobile-cta .btn{box-shadow:0 10px 18px rgba(0,0,0,.12)}
 @media(min-width:768px){.mobile-cta{display:none}}
+
 
 
 
